@@ -30,12 +30,32 @@ namespace Tourism.Service
            
             return this._unitOfWork.UserRepository.FirstOrDefault(X => X.Email == email);
         }
-        public int AddUser(User user)
+        public User AddUser(User user)
         {
             this._unitOfWork.UserRepository.Add(user);
             this._unitOfWork.Save();
-            
-            return user.Id;
+
+            return user;
+        }
+        public User UpdateUser(User user)
+        {
+            this._unitOfWork.UserRepository.Update(user);
+            this._unitOfWork.Save();
+
+            return user;
+        }
+
+        public bool DeleteUser(int userId)
+        {
+            User user = this._unitOfWork.UserRepository.GetById(userId);
+            if (user != null)
+            {
+                this._unitOfWork.UserRepository.Remove(user);
+                this._unitOfWork.Save();
+
+                return true;
+            }
+            return false;
         }
     }
 }

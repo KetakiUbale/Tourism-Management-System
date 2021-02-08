@@ -13,6 +13,7 @@ namespace Tourism.Persistence.Infastructure
         T FirstOrDefault(Expression<Func<T, bool>> Predicate);
         void Add(T entity);
         void Remove(T entity);
+        void Update(T entity);
         
 
     }

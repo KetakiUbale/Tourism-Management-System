@@ -14,7 +14,7 @@ namespace Tourism.Persistence
         public Repository<Package> PackageRepository { get; }
         public Repository<PackageContent> PackageContentRepository { get; }
 
-        public Repository<PackageContent> PackageContent => throw new NotImplementedException();
+     
 
         public UnitOfWork(TourismContext context)
         {

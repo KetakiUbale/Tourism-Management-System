@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -21,12 +22,20 @@ namespace Tourism.Web
 {
     public class Startup
     {
+       // private readonly IConfigurationRoot _configRoot;
+        public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
+        
+
         {
             Configuration = configuration;
-        }
 
-        public IConfiguration Configuration { get; }
+           // IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
+           // this._configRoot = builder.Build();
+
+       }
+
+       
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -39,7 +48,7 @@ namespace Tourism.Web
             services.AddTransient<IPackageService, PackageService>();
             services.AddTransient<IPackageContentService, PackageContentService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddSingleton<TourismContext>();
+            services.AddTransient<TourismContext>();
             services.AddTransient<IRepository<User>, Repository<User>>();
         }
 

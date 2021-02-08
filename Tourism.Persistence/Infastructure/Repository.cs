@@ -46,8 +46,11 @@ namespace Tourism.Persistence
         {
             this._context.Set<T>().Remove(entity);
         }
-    
-
+       
+        public void Update(T entity)
+        {
+            this._context.Set<T>().Update(entity);
+        }
     }
-    
+
 }
